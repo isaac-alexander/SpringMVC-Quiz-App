@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body class="container m-4">
+
+<h2 class="text-primary mb-4">Spring MVC Quiz</h2>
+
+<!-- show question number -->
+<h5>
+    Question <span th:text="${index + 1}"></span> of
+    <span th:text="${total}"></span>
+</h5>
+
+<form th:action="@{/question/{index}(index=${index})}" method="post">
+
+    <div class="card mb-3 p-3">
+
+        <!-- display question -->
+        <h4 class="mb-3" th:text="${question.question}"></h4>
+
+        <div class="my-3">
+
+            <div class="form-check">
+                <label class="form-check-label" th:text="${question.optionA}"></label>
+                <input name="answer" value="A" type="radio" class="form-check-input" required>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label" th:text="${question.optionB}"></label>
+                <input name="answer" value="B" type="radio" class="form-check-input">
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label" th:text="${question.optionC}"></label>
+                <input name="answer" value="C" type="radio" class="form-check-input">
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label" th:text="${question.optionD}"></label>
+                <input name="answer" value="D" type="radio" class="form-check-input">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- navigation buttons -->
+    <div>
+
+        <!-- previous button -->
+        <a th:if="${index > 0}"
+           th:href="@{/question/{i}(i=${index - 1})}"
+           class="btn btn-secondary">Previous</a>
+
+        <!-- next or submit -->
+        <button class="btn btn-success">
+            <span th:if="${index < total - 1}">Next</span>
+            <span th:if="${index == total - 1}">Submit</span>
+        </button>
+
+    </div>
+
+</form>
+
+</body>
+</html>
