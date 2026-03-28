@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Quiz</title>
 
@@ -52,16 +52,16 @@
     <!-- navigation buttons -->
     <div>
 
-        <!-- previous button -->
-        <a th:if="${index > 0}"
-           th:href="@{/question/{i}(i=${index - 1})}"
-           class="btn btn-secondary">Previous</a>
+<!--        &lt;!&ndash; previous button &ndash;&gt;-->
+<!--        <a th:if="${index > 0}"-->
+<!--           th:href="@{/question/{i}(i=${index - 1})}"-->
+<!--           class="btn btn-secondary">Previous</a>-->
 
         <!-- next or submit -->
-        <button class="btn btn-success">
-            <span th:if="${index < total - 1}">Next</span>
-            <span th:if="${index == total - 1}">Submit</span>
-        </button>
+        <div class="p-3">
+            <button class="btn btn-primary" th:if="${index < total - 1}">Next</button>
+            <button class="btn btn-success" th:if="${index == total - 1}">Submit</button>
+        </div>
 
     </div>
 
