@@ -43,10 +43,14 @@ public class QuizController {
             return "redirect:/question/0";
         }
 
+        // gets one question with the index and saves to the variable q
         Question q = questions.get(index);
 
+        // sends question to the html
         model.addAttribute("question", q);
+        // send question position of question to the html used in the form and button to navigate
         model.addAttribute("index", index);
+        // sends total number of questions to the html used in the form and button to navigate
         model.addAttribute("total", questions.size());
 
         return "question";
@@ -58,12 +62,13 @@ public class QuizController {
     @PostMapping("/question/{index}")
     public String nextQuestion(
             @PathVariable int index,
-            @RequestParam String answer,
-            @ModelAttribute("answers") Map<Long, String> answers,
+            @RequestParam String answer, // gets selected answer from form "A", "B", "C"
+            @ModelAttribute("answers") Map<Long, String> answers, // gets stored answers map
             Model model) {
 
         List<Question> questions = quizService.getAllQuestions();
 
+        // gets current question again
         Question q = questions.get(index);
 
         // save answer
@@ -72,6 +77,7 @@ public class QuizController {
         // last question then calculate result
         if (index == questions.size() - 1) {
 
+            // calls calculate score Method in service
             int score = quizService.calculateScore(answers);
             model.addAttribute("score", score);
 
