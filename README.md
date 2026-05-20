@@ -88,4 +88,10 @@ http://localhost:8080/
 * Score is calculated
 * Result page is displayed
 
+## START QUIZ 
+![image alt](https://github.com/isaac-alexander/SpringMVC-Quiz-App/blob/2d6a109d00f42b275858254bd055ff9b47ead1e1/SpringMvcQuizApplicationStart.png)
+
+## YOUR SCORE
+![image alt](https://github.com/isaac-alexander/SpringMVC-Quiz-App/blob/2d6a109d00f42b275858254bd055ff9b47ead1e1/SpringMvcQuizApplicationEnd.png)
+
 --
