@@ -35,23 +35,46 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public int calculateScore(Map<Long, String> answers) {
 
-        int score = 0; // intialize score
+//        int score = 0; // intialize score
+//
+//        // get all questions from database
+//        List<Question> questions = questionRepository.findAll();
+//
+//        // Loop through each question
+//        for (Question q : questions) {
+//            //gets user answer using questionId
+//            String userAnswer = answers.get(q.getId());
+//
+//            //  Compare user answer with correct answer
+//            if (userAnswer != null && userAnswer.equals(q.getCorrectAnswer())) {
+//                score++;
+//            }
+//        }
+//
+//        // return final score
+//        return score;
 
-        // get all questions from database
+        // get all questions from the database
         List<Question> questions = questionRepository.findAll();
 
-        // Loop through each question
-        for (Question q : questions) {
-            //gets user answer using questionId
-            String userAnswer = answers.get(q.getId());
+        // convert the questions list into a stream
+        long score = questions.stream()
 
-            //  Compare user answer with correct answer
-            if (userAnswer != null && userAnswer.equals(q.getCorrectAnswer())) {
-                score++;
-            }
-        }
+                // keep only questions where the user's answer is correct
+                .filter(question -> {
 
-        // return final score
-        return score;
+                    // get the user's answer using the question id
+                    String userAnswer = answers.get(question.getId());
+
+                    // check if userAnswer is not null and userAnswer matches the correct answer
+                    return userAnswer != null &&
+                            userAnswer.equals(question.getCorrectAnswer());
+                })
+
+                // count how many correct answers exist
+                .count();
+
+        // convert long to int and return final score
+        return (int) score;
     }
 }

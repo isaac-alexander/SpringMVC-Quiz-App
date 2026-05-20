@@ -12,15 +12,15 @@ import java.util.List;
 @SpringBootApplication
 public class SpringMvcQuizApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringMvcQuizApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringMvcQuizApplication.class, args);
+    }
 
     @Autowired
     private QuestionRepository questionRepository;
 
     @Override
-    public void run(String... args) throws Exception{
+    public void run(String... args) throws Exception {
         questionRepository.saveAll(List.of(
                 new Question("1. What does MVC stand for in Spring MVC?", "a) Multi-View Controller", "b) Module-View-Controller", "c) Model-View-Controller", "d) Model-Value-Configuration", "C"),
 
